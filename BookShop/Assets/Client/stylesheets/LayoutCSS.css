@@ -1,0 +1,63 @@
+﻿div#FullPage {
+    position: relative;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    background-color: white;
+}
+
+#MainMenu {
+    height: 30px;
+}
+
+#search_box {
+    float: left;
+    margin-left: 5%;
+}
+
+#search_box input {
+    height: 0;
+}
+
+#ImageSearch button {
+    margin-right: -65px;
+    padding: 0 10px 0 10px;
+    background-color: #426db5;
+}
+
+#ImageSearch button:hover {
+    background-color: rgba(0,0,0,.5);
+}
+
+#ImageSearch img {
+    width: 30px;
+    height: 30px;
+}
+
+#slider {
+    float: right;
+    width: 900px;
+    height: 360px;
+}
+
+#slider img {
+    width: 900px;
+    height: 360px;
+}
+
+#divMenuLeft {
+    float: left;
+}
+
+#divLeft {
+    float: left;
+    width: 30%;
+}
+
+#divLeft .item {
+    width: 100%;
+}
+
+#divRight {
+    width: 70%;
+    float: right;
+}

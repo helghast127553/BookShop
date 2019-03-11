@@ -1,0 +1,21 @@
+﻿@using BookShop.Models.EF;
+@model List<BookCategory>
+
+<hr />
+<h2 style="margin-left:2%;font-weight:normal;color:black">Danh mục chủ đề</h2>
+<hr />
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <a id="btnChuDe" style="width: 250px; font-size: 11pt; color: aliceblue; background-color:#0855bd; text-decoration: none" href="/sach/@Model[i].MetaTitle-@Model[i].ID" class="button button-submit">
+        @Model[i].Name
+    </a>
+}
+<br />
+<br />
+<a style="float: left; width: 250px; font-size: 11pt; color: aliceblue; background-color: #00a200; " href="/chu-de-khac" class="button button-submit">
+    Chủ đề khác...
+</a>
+<br />
+
+<div style="clear:both"></div>

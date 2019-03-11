@@ -1,0 +1,54 @@
+﻿#divContentRight {
+    display: none;
+}
+
+#divMenuSlider {
+    display: none;
+}
+
+#BookImage {
+    float: left;
+}
+
+#Book {
+    float: left;
+    width: 600px;
+}
+
+#BookName {
+    font-weight: normal;
+    font-size: 20pt;
+    height: auto;
+    word-wrap: break-word; /*Canh nội dung tự xuống dòng */
+    color: red;
+}
+
+#BookTitle, BookPublisher {
+    font-size: 15pt;
+    font-weight: normal;
+    color: black;
+    height: auto;
+}
+
+#BookDescription {
+    font-weight: normal;
+    color: black;
+    word-wrap: break-word;
+    height: auto;
+}
+
+#BookPrice span#BookPrice {
+    font-weight: normal;
+    color: orange;
+    font-size: 25pt;
+    height: auto;
+}
+
+#btnCart {
+    font-family: 'FontAwesome','Segoe UI';
+    background-color: red;
+}
+
+#btnCart:hover {
+    background-color: #a30a11;
+}

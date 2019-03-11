@@ -1,0 +1,57 @@
+﻿@using BookShop.Models.DTO
+@model List<Cart>
+
+@{
+    ViewBag.Title = "UpdateCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table id="divCart">
+    <tr>
+        <td>Tên sách</td>
+        <td>Ảnh bìa</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>
+        <td>Thành tiền</td>
+    </tr>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+            <td>@Model[i].Name</td>
+            <td>
+                <a href="@Url.Action("BookDetail", "Book", new { @ID = Model[i].BookID })">
+                    <img src="@Url.Content("~/Images/" + Model[i].Image)" width="50" height="50" />
+                </a>
+            </td>
+            @using (Html.BeginForm("UpdateBookQuantity", "Cart", new { @id = Model[i].BookID }, FormMethod.Get))
+            {
+                <td>
+                    @Html.TextBox("quantity", Model[i].Quantity)
+                </td>
+                <td>@Model[i].Price.ToString("N0") VNĐ</td>
+                <td>@Model[i].Total.ToString("N0") VNĐ</td>
+                <td>
+                    <input type="submit" value="Cập nhật" />
+                    <br />
+                    @Html.ActionLink("Xóa", "DeleteBook", new { @bookID = Model[i].BookID })
+                </td>
+            }
+            <td></td>
+
+        </tr>
+    }
+</table>
+
+<style>
+    #divCart {
+        border: 1px solid #EEEEEE;
+        margin-left: 10%;
+    }
+
+        #divCart td {
+            padding: 10px;
+            border: 1px solid #EEEEEE;
+        }
+</style>
+

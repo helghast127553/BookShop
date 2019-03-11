@@ -1,0 +1,34 @@
+﻿@using BookShop.Models.EF
+@model Book
+
+@{
+    ViewBag.Title = "BookDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/Client/stylesheets/BookDetailCSS.css" rel="stylesheet" />
+
+@section ContentRight{
+    <div id="BookImage">
+        <img src="@Url.Content("~/Images/"+Model.Image)" />
+    </div>
+
+    <div id="Book">
+        <div id="BookName">@Model.Name</div>
+        <div id="BookTitle">Chủ đề: @ViewBag.BookCategory</div>
+        <div id="BookPublisher">Nhà xuất bản: @ViewBag.Publisher</div>
+        <div id="BookDescription">Nội dung tóm tắt:<br />- @Model.Description <br /></div>
+        @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
+        <div id="BookPrice"><span style="color: green; font-weight: normal;"> Đơn giá:</span><br /><span id="BookPrice"> @(Model.Price.HasValue ? @Model.Price.Value.ToString("N0") : "Đang cập nhật") VND</span></div>
+        <br />
+        <div id="Cart">
+            @using (Html.BeginForm("AddBook", "Cart", new { id = Model.ID }, FormMethod.Get))
+            {
+                <button type="submit" style="cursor: pointer" id="btnCart" class="btn btn-primary">Mua hàng</button>
+            }
+        </div>
+    </div>
+    <div style="clear:both"></div>
+}
+
+

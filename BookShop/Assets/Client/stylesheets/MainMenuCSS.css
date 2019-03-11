@@ -1,0 +1,24 @@
+﻿.navMenu {
+    float: right;
+    margin-right: 10%;
+}
+
+.navMenu li {
+    display: inline;
+    border-right: solid 1px rgba(0,0,0,.1);
+    padding: 20px;
+    padding-top: 19px;
+    padding-bottom: 22px;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+}
+
+.navMenu li:hover {
+    background-color: rgba(0,0,0,.5);
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+}
+
+.navMenu a:hover {
+    text-decoration: none;
+}

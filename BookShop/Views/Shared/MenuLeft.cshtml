@@ -1,0 +1,13 @@
+﻿@using BookShop.Models.EF
+@model List<Book>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <div class="activity-list-update">
+        <img src="@Url.Content("~/Images/" + Model[i].Image)" alt="@Model[i].Name" width="50" height="50">
+        <p><strong>Tiêu đề @Model[i].Name</strong>
+        <br />
+        <a href="/chi-tiet/@Model[i].MetaTitle-@Model[i].ID">Xem chi tiết</a></p>
+        <div class="clear"></div>
+    </div>
+}

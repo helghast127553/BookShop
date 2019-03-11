@@ -1,0 +1,14 @@
+﻿.Account {
+    float: right;
+    margin-top: -1%;
+}
+
+.Account a:hover {
+    text-decoration: none;
+    color: green;
+}
+
+.Phone {
+    float: left;
+    margin-top: -1%;
+}

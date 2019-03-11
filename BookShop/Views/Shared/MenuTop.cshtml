@@ -1,0 +1,37 @@
+﻿@using BookShop.Common
+@using BookShop.Models.DTO
+@{
+    //var totalQuantity = @ViewBag.TongSoLuong;
+    var sessionUser = Session[CommonConstants.USER_SESSION] as UserLogin;
+    var sessionCart = Session[CommonConstants.CART_SESSION] as List<Cart>;
+    var totalBookOrder = sessionCart != null ? sessionCart.Count : 0;
+}
+<div class="Phone">
+    <i class="fa fa-phone">
+        (028) 07769-33780
+    </i>
+</div>
+
+<div class="Account">
+    @if (sessionUser == null)
+    {
+        <a href="@Url.Action("Index","Cart")">
+            <i class="fa fa-shopping-cart"></i>
+            (@totalBookOrder)
+        </a>
+        <i class="fa fa-sign-in"></i>
+        <a href="/dang-ky">Đăng ký</a>
+        <i class="fa fa-unlock"></i>
+        <a href="/dang-nhap">Đăng nhập</a>
+    }
+    else
+    {
+        <a href="@Url.Action("Index","Cart")">
+            <i class="fa fa-shopping-cart"></i>
+            (@totalBookOrder)
+        </a>
+        <a href="#">Xin chào: @sessionUser.UserName</a>
+        <i class="fa fa-sign-out"></i>
+        <a href="/dang-xuat">Đăng xuất</a>
+    }
+</div>

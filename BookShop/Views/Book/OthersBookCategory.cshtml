@@ -1,0 +1,73 @@
+﻿@using BookShop.Models.EF
+@model List<BookCategory>
+
+@{
+    var booksCategory = ViewBag.BookCategories as List<Book>;
+    ViewBag.Title = "OthersBookCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/Client/stylesheets/BookCategory.css" rel="stylesheet" />
+
+<style>
+    #divPublisherAndTitle {
+        display: none;
+    }
+</style>
+<hr />
+<h2 style="margin-left:2%;font-weight:normal;color:black">Danh mục chủ đề</h2>
+<hr />
+<div style="clear:both"></div>
+<div id="divBody" style="width:100%">
+    @*Hiển thị danh mục chủ đề*@
+    <div style="float:left;width:30%;">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <a id="BookCategory" style="width: 250px; font-size: 11pt; color: aliceblue;  text-decoration: none" href="/sach/@Model[i].MetaTitle-@Model[i].ID" class="button button-submit">
+                @Model[i].Name
+            </a>
+            <br />
+        }
+    </div>
+    @{
+
+        int a = 0;
+        <div style="float:left;width:70%;">
+            @for (int i = 0; i < booksCategory.Count; i++)
+            {
+                a++;
+                <div id="Book" style="float:left;width:23%;margin-left:3%">
+                    <a href="/chi-tiet/@booksCategory[i].MetaTitle-@booksCategory[i].ID">
+                        <div id="BookImage">
+                            <img src="@Url.Content("~/Images/"+@booksCategory[i].Image)" width="100" height="150" />
+                        </div>
+                    </a>
+                    <div id="BookDetail">
+                        @*Nếu tên sách dài hơn 30 ký tự thì chúng ta sẽ cắt tên sách ra lấy từ ký tự 0 đến ký tự 35*@
+                        @if (@Model[i].Name.Length < 35)
+                        {
+                            <div id="BookName" title="@booksCategory[i].Name">@booksCategory[i].Name</div>
+                        }
+                        else
+                        {
+                            <div id="BookName" title="@booksCategory[i].Name"> @booksCategory[i].Name.Substring(0, 35) ...</div>
+                        }
+                        @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
+                        <div id="BookPrice" style="color:orange">
+                            <font color="Green">Giá:</font>
+                            @(booksCategory[i].Price.HasValue ? booksCategory[i].Price.Value.ToString("N0") : "Đang cập nhật") VND
+                        </div>
+                    </div>
+                </div>
+
+                if (a % 3 == 0)
+                {
+                    <div style="clear:both"></div>
+                }
+            }
+        </div>
+
+    }
+</div>
+<div style="clear:both"></div>
+
