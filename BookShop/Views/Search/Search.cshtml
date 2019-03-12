@@ -1,0 +1,70 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<BookShop.Models.EF.Book>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/Client/stylesheets/BookCategory.css" rel="stylesheet" />
+
+<h2 style="margin-left:2%;font-weight:normal;color:black">Kết quả tìm kiếm</h2>
+<div>@ViewBag.ErrorMessage</div>
+<hr />
+
+<div id="divBody" style="background:White;">
+    @{ int a = 0; }
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        a++;
+        <div id="Book">
+            <a href="/chi-tiet/@Model[i].MetaTitle-@Model[i].ID">
+                <div id="CoverImage">
+                    <img src="@Url.Content("~/Images/" + Model[i].Image)" width="100" height="150" />
+                </div>
+            </a>
+            <div id="BookDetail">
+                @if (Model[i].Name.Length < 35)
+                {
+                    <div id="BookName" title="@Model[i].Name">
+                        @Model[i].Name.
+                    </div>
+                }
+                else
+                {
+                    <div id="BookName" title="@Model[i].Name">
+                        @Model[i].Name.Substring(0, 35)...
+                    </div>
+                }
+                <div id="BookPrice" style="color:orange">
+                    <font color="Green">Giá:</font>
+                    @(Model[i].Price.HasValue ? @Model[i].Price.Value.ToString("N0") : "Đang cập nhật") VND
+                </div>
+            </div>
+            <div id="Cart">
+                @using (Html.BeginForm("AddBook", "Cart", new { id = Model[i].ID }, FormMethod.Get))
+                {
+                    <button type="submit" style="cursor: pointer" id="btnCart" class="btn btn-primary">Mua hàng</button>
+                }
+            </div>
+        </div>
+        if (a % 3 == 0)
+        {
+            <div style="clear:both"></div>
+        }
+    }
+</div>
+
+<div style="clear:both"></div>
+@* Tạo link liên kết các trang*@
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/ @Model.PageCount
+<div class="Page">
+    @Html.PagedListPager(Model, page => Url.Action("Search", new { page = page, @keyword = ViewBag.Keyword }))
+</div>
+
+<style>
+    .Page li {
+        display: inline;
+    }
+</style>

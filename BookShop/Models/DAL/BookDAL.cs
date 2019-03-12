@@ -131,5 +131,25 @@ namespace BookShop.Models.DAL
                 return books;
             }
         }
+
+        public static List<Book> SearchBooks(string keyword)
+        {
+            using (var db = new BookShopEntities())
+            {
+                var books = db.Books.Where(x => x.Name.Contains(keyword))
+                    .OrderBy(x => x.Name)
+                    .ToList();
+                return books;
+            }
+        }
+
+        public static List<Book> GetBooksInOrder()
+        {
+            using (var db = new BookShopEntities())
+            {
+                var books = db.Books.OrderBy(x => x.Name).ToList();
+                return books;
+            }
+        }
     }
 }
